@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio technique — Soutien informatique N1/N2, administration systèmes, diagnostic et résolution d'incidents. Homelab réel sur 3 machines.">
+    <meta name="author" content="Younes El Fakir">
+    <meta name="keywords" content="Younes El Fakir, soutien informatique, support IT, N1, N2, Windows Server, Active Directory, DNS, DHCP, GPO, Linux, Docker, PowerShell, diagnostic, résolution d'incidents">
+    <title>Younes El Fakir — Portfolio Soutien Informatique N1/N2</title>
+    <style>
+        :root { --bg:#0d1117; --fg:#c9d1d9; --accent:#58a6ff; --card:#161b22; --border:#30363d; --muted:#8b949e; --green:#3fb950; --yellow:#d29922; --red:#f85149; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; background:var(--bg); color:var(--fg); line-height:1.6; }
+        .container { max-width:900px; margin:0 auto; padding:2rem 1rem; }
+        header { text-align:center; padding:3rem 1rem 2rem; border-bottom:1px solid var(--border); }
+        header h1 { font-size:2rem; color:var(--accent); margin-bottom:0.5rem; }
+        header p { color:var(--muted); font-size:1.1rem; }
+        .badges { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
+        .badge { background:var(--card); border:1px solid var(--border); padding:0.3rem 0.8rem; border-radius:20px; font-size:0.85rem; }
+        section { margin:2rem 0; }
+        section h2 { font-size:1.4rem; color:var(--accent); margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem; }
+        .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1.2rem; margin-bottom:1rem; }
+        .card h3 { color:var(--fg); margin-bottom:0.5rem; }
+        .card p { color:var(--muted); font-size:0.95rem; }
+        .skills { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.8rem; }
+        .skill-item { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:0.8rem; }
+        .skill-item strong { color:var(--accent); display:block; margin-bottom:0.3rem; }
+        .skill-item span { color:var(--muted); font-size:0.85rem; }
+        .demo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+        .demo-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1.2rem; }
+        .demo-card h3 { color:var(--accent); margin-bottom:0.5rem; }
+        .demo-card .status { display:inline-block; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.8rem; margin-top:0.5rem; }
+        .status-verified { background:rgba(63,185,80,0.15); color:var(--green); border:1px solid var(--green); }
+        .status-prepared { background:rgba(210,153,34,0.15); color:var(--yellow); border:1px solid var(--yellow); }
+        .status-blocked { background:rgba(248,81,72,0.15); color:var(--red); border:1px solid var(--red); }
+        footer { text-align:center; padding:2rem 1rem; border-top:1px solid var(--border); color:var(--muted); font-size:0.85rem; }
+        a { color:var(--accent); text-decoration:none; }
+        a:hover { text-decoration:underline; }
+        code { background:var(--card); padding:0.15rem 0.4rem; border-radius:4px; font-size:0.9rem; }
+        .evidence { background:#0d1117; border:1px solid var(--border); border-radius:6px; padding:1rem; font-family:monospace; font-size:0.85rem; color:var(--green); margin:0.5rem 0; overflow-x:auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Younes El Fakir</h1>
+        <p>Technicien en soutien informatique N1/N2 — Administration systèmes et réseaux</p>
+        <div class="badges">
+            <span class="badge">Windows Server / AD</span>
+            <span class="badge">Linux / Docker</span>
+            <span class="badge">PowerShell</span>
+            <span class="badge">Diagnostic d'incidents</span>
+            <span class="badge">Documentation technique</span>
+        </div>
+    </header>
+    <div class="container">
+        <section>
+            <h2>À propos</h2>
+            <div class="card">
+                <p>Technicien en soutien informatique avec expérience en administration de systèmes Windows et Linux, gestion d'Active Directory, diagnostic réseau et résolution d'incidents. Ce portfolio présente des démonstrations reproductibles basées sur un homelab réel de 3 machines, avec des preuves vérifiables et une documentation honnête des limites.</p>
+                <p style="margin-top:0.5rem;">Chaque démonstration inclut : les commandes exactes, les résultats attendus, les preuves mesurées et les limites identifiées. Les données sensibles identifiées dans le périmètre de revue sont expurgées ; la vérification complète du dépôt reste à effectuer.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Compétences démontrées</h2>
+            <div class="skills">
+                <div class="skill-item"><strong>Active Directory / DNS</strong><span>Diagnostic contrôleur de domaine, résolution DNS, réplication, GPO</span></div>
+                <div class="skill-item"><strong>Windows Server</strong><span>Administration, services, journaux, PowerShell</span></div>
+                <div class="skill-item"><strong>Linux / Docker</strong><span>Diagnostic conteneurs, services, réseau, stockage</span></div>
+                <div class="skill-item"><strong>Résolution d'incidents</strong><span>Symptôme → cause racine → correction → validation</span></div>
+                <div class="skill-item"><strong>Documentation</strong><span>Procédures reproductibles, rapports d'audit, ADR</span></div>
+                <div class="skill-item"><strong>Sécurité</strong><span>Gestion des secrets, expurgation, contrôle d'accès</span></div>
+            </div>
+        </section>
+        <section>
+            <h2>Démonstrations reproductibles</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <h3>01 — Diagnostic AD / DNS</h3>
+                    <p>Diagnostic d'un contrôleur de domaine Active Directory et de son service DNS. Commandes PowerShell reproductibles avec résultats mesurés.</p>
+                    <span class="status status-prepared">Revu statiquement</span>
+                </div>
+                <div class="demo-card">
+                    <h3>02 — Diagnostic Linux / Docker</h3>
+                    <p>Diagnostic de l'état des conteneurs Docker sur un hôte Linux. Détection de service indisponible et isolation de la cause.</p>
+                    <span class="status status-prepared">Revu statiquement</span>
+                </div>
+                <div class="demo-card">
+                    <h3>03 — Incident → Correction → Validation</h3>
+                    <p>Gestion d'un incident complet : du symptôme à la cause racine, en passant par la correction et la validation. Basé sur un incident réel (crash gateway, exit code 75).</p>
+                    <span class="status status-prepared">Revu statiquement</span>
+                </div>
+                <div class="demo-card">
+                    <h3>04 — Audit ITSM (lecture seule)</h3>
+                    <p>Audit d'une plateforme ITSM sur Kubernetes : inventaire technique, analyse des dépendances, stratégie de sauvegarde, plan de rollback. Aucune suppression effectuée.</p>
+                    <span class="status status-prepared">Préparé</span>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Preuve d'exécution — Diagnostic AD/DNS</h2>
+            <div class="card">
+                <p>Exemple de sortie réelle (expurgée) :</p>
+                <div class="evidence">
+Test-ComputerSecureChannel : True
+DNS SRV _ldap._tcp.dc._msdcs : OK
+WinRM port 5985 : Open
+NTDS service : Running
+Replication : 0 errors
+                </div>
+                <p style="color:var(--muted);font-size:0.85rem;">Exemple de sortie expurgée (illustration). IPs et noms de domaine remplacés par des placeholders.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Approche méthodologique</h2>
+            <div class="card">
+                <p>Chaque démonstration suit le même modèle :</p>
+                <ol style="margin-left:1.5rem;color:var(--muted);">
+                    <li><strong>Inventaire</strong> — lister toutes les ressources (K3s, Docker, fichiers, secrets)</li>
+                    <li><strong>Dépendances</strong> — identifier les ressources partagées et les dépendances</li>
+                    <li><strong>Risques</strong> — évaluer les risques de suppression ou de modification</li>
+                    <li><strong>Sauvegarde</strong> — préparer les backups avant toute action</li>
+                    <li><strong>Rollback</strong> — définir le plan de retour arrière</li>
+                    <li><strong>Approbation</strong> — obtenir l'approbation explicite avant chaque action destructive</li>
+                    <li><strong>Vérification</strong> — confirmer que les autres services ne sont pas impactés</li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>Liens</h2>
+            <div class="card">
+                <p>
+                    <a href="https://github.com/homelabtwisterlab/homelab-twisterlab">Dépôt GitHub</a> ·
+                    <a href="https://github.com/homelabtwisterlab/homelab-twisterlab/tree/main/demos">Démonstrations</a> ·
+                    <a href="https://www.linkedin.com/in/younes-el-fakir">LinkedIn</a>
+                </p>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>Younes El Fakir — Portfolio Soutien Informatique N1/N2</p>
+        <p>Les démonstrations sont basées sur un homelab réel. Les preuves sont expurgées (IPs, secrets, noms de domaine masqués).</p>
+    </footer>
+</body>
+</html>
+HTMLEOF
+echo "Created index.html ($(wc -l < index.html) lines)"
