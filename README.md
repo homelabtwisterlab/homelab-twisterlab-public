@@ -2,7 +2,7 @@
 
 > **Homelab réel sur 3 machines · Diagnostic reproductible · Preuves vérifiables**
 
-### 🌐 **[Voir la vitrine en ligne →](https://homelabtwisterlab.github.io/homelab-twisterlab/)**
+### 🌐 **[Voir la vitrine en ligne →](https://homelabtwisterlab.github.io/homelab-twisterlab-public/)**
 
 ---
 
@@ -53,9 +53,9 @@ Un technicien en soutien informatique qui documente son homelab réel (Windows S
 
 ## Liens
 
-- [Dépôt GitHub](https://github.com/homelabtwisterlab/homelab-twisterlab)
-- [Démonstrations](https://github.com/homelabtwisterlab/homelab-twisterlab/tree/main/demos)
-- [Vitrine en ligne](https://homelabtwisterlab.github.io/homelab-twisterlab/)
+- [Dépôt GitHub](https://github.com/homelabtwisterlab/homelab-twisterlab-public)
+- [Démonstrations](https://github.com/homelabtwisterlab/homelab-twisterlab-public/tree/main/demos)
+- [Vitrine en ligne](https://homelabtwisterlab.github.io/homelab-twisterlab-public/)
 - [LinkedIn](https://www.linkedin.com/in/younes-el-fakir)
 
 ---
