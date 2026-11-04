@@ -1,0 +1,10 @@
+> **CLEANED COPY — REVIEW BEFORE PUBLISH**
+> Source (private, NOT published): `homelabtwisterlab/homelab-twisterlab/cloudflare/workers/twisterlab/wrangler.toml`
+> Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+name = "twisterlab-worker"
+main = "src/index.js"
+compatibility_date = "2026-10-26"
+
+# Worker gratuit : 100 000 requetes/jour, 10 ms CPU/invocation.
+# Aucune carte bancaire requise. Voir cloudflare/README.md.

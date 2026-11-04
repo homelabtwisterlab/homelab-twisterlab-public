@@ -1,0 +1,19 @@
+// CLEANED COPY - REVIEW BEFORE PUBLISH
+// Source (private, NOT published): homelabtwisterlab/homelab-twisterlab/azure/functions/package.json
+// Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+{
+  "name": "twisterlab-functions",
+  "version": "1.0.0",
+  "description": "TwisterLab Azure Functions (Node 22)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

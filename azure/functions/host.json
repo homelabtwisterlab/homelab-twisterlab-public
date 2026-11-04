@@ -1,0 +1,19 @@
+// CLEANED COPY - REVIEW BEFORE PUBLISH
+// Source (private, NOT published): homelabtwisterlab/homelab-twisterlab/azure/functions/host.json
+// Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
+    }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[4.*, 5.0.0)"
+  }
+}

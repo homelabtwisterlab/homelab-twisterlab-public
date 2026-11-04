@@ -1,0 +1,18 @@
+// CLEANED COPY - REVIEW BEFORE PUBLISH
+// Source (private, NOT published): homelabtwisterlab/homelab-twisterlab/cloudflare/workers/twisterlab/package.json
+// Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+{
+  "name": "twisterlab-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TwisterLab — Cloudflare Worker (HTTP trigger, equivalent gratuit d'Azure Functions)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
