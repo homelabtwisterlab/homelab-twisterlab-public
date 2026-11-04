@@ -129,6 +129,8 @@ La plateforme TwisterITSM est déployée sur Edge (Ubuntu 24.04.5, K3s) depuis p
 
 ## Procédure de démonstration
 
+> **Note portage 2026-11-03 :** dans ce dépôt public, la démo 04 ne fournit que son README et un échantillon de preuve (`demos/04-itsm-audit/README.md` + `evidence/audit-sample.txt`). Les scripts (`demos/04-itsm-audit/scripts/*.sh`) et tests (`demos/04-itsm-audit/tests/*.sh`) cités ci-dessous décrivent la procédure d'origine et ne sont pas publiés ici ; ils ne sont donc pas exécutables depuis ce dépôt.
+
 ### 1. Vérification syntaxique des scripts
 
 ```bash
