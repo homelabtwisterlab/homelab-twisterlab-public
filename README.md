@@ -25,20 +25,30 @@ Un technicien en soutien informatique qui documente son homelab réel (Windows S
 
 ---
 
-## Structure du dépôt
+## Structure du dépôt — contenu réellement publié
 
 ```
 ├── index.html              # Vitrine GitHub Pages
-├── demos/                  # 4 démonstrations reproductibles
+├── demos/                  # 4 démonstrations
 │   ├── 01-ad-dns/          # Diagnostic AD/DNS (Windows Server)
 │   ├── 02-linux-docker/    # Diagnostic Linux/Docker
-│   ├── 03-incident-validation/  # Incident → Correction → Validation
-│   └── 04-itsm-audit/      # Audit ITSM (lecture seule)
-├── docs/                   # Documentation technique
-├── scripts/                # Scripts de diagnostic et d'administration
-├── diagrams/               # Diagrammes d'architecture
+│   ├── 03-incident-validation/  # README + preuve (evidence/) — Incident → Correction → Validation
+│   └── 04-itsm-audit/      # README + preuve (evidence/) — Audit ITSM (lecture seule)
+├── docs/                   # Documentation technique — PARTIELLE
+│   ├── architecture.md, INFRASTRUCTURE-cleaned-summary.md (résumé générique, rôle du 3e nœud non précisé)
+│   ├── decisions/001 à 004, incidents/ (3), optimisation/, veille/, workflows/T-DISK-MONITOR.md
+├── scripts/                # Scripts de diagnostic et d'administration — PARTIELS
+│   ├── inventory, mesures, monitor_disk, optimisation, veille, planifier, hermes/fix-edge-user-md.sh
+├── tests/                  # Tests des scripts publiés
+├── skills/homelab-docs/    # Skill de documentation
+├── linkedin/               # Brouillons de posts LinkedIn
+├── cloudflare/             # Worker gratuit (substitut gratuit de la Function Azure)
+├── azure/                  # Functions en variables d'environnement seulement (sans la fonction à topologie codée en dur)
+├── diagrams/               # NOTE GÉNÉRIQUE SEULEMENT (README-cleaned.md) — pas de diagramme réel
 └── portfolio/              # Dossier portfolio professionnel
 ```
+
+**Non publié, volontairement :** démo multi-machines SSH, scripts et tests de la démo 04, inventaire mesuré, messagerie AD/mail, recettes d'accès SSH, audits, carte des sauvegardes, guide Keycloak, topologie réelle et diagramme réel, configuration non revue. Ces éléments restent dans le dépôt privé, qui reste privé.
 
 ---
 
