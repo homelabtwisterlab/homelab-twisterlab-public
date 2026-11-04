@@ -1,0 +1,75 @@
+> **CLEANED COPY — REVIEW BEFORE PUBLISH**
+> Source (private, NOT published): `homelabtwisterlab/homelab-twisterlab/demos/03-incident-validation/evidence/validation.txt`
+> Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+# Preuve expurgée — Validation Incident exit-75 (2026-10-06)
+
+Source : `docs/incidents/exit-75.md` (post-mortem original)
+
+## Chronologie vérifiée (horodatages UTC)
+
+| Heure | Événement | Preuve (logs) |
+|---|---|---|
+| 01:06:33 | Répartiteur lance 3 workers | `dispatcher: spawned=3` |
+| 01:09:45 | 3 workers tués manuellement | `reaped 3 zombie worker(s)` |
+| 01:13:07 | Répartiteur relance 2 workers | `reaped 2 zombie worker(s)` |
+| 01:27:47 | Répartiteur relance 1 worker | `dispatcher: spawned=1` |
+| 01:29–01:30 | Canal notification timeout | `polling degraded` |
+| **01:32:37** | **Gateway tué (exit 75)** | `missed 3 consecutive liveness probes; exiting with code 75` |
+| 01:46:04 | Redémarrage gateway | `control pipe listening` |
+| 01:47:25 | Service :8642 opérationnel | `listening on :8642` |
+
+**Durée d'indisponibilité : ~14 minutes**
+
+## Cause racine confirmée
+
+Le répartiteur (dispatcher) **relance ses workers après chaque suppression**.
+- Kill 1 → relance 2
+- Kill 2 → relance 1
+- Chaque worker = agent complet (~100 Mo, terminal access)
+- Consommation CPU → affamement boucle asyncio du gateway
+- Chien de garde (3 sondes manquées) → kill gateway (exit 75)
+
+**Absence de circuit breaker** dans le dispatcher.
+
+## Correctif appliqué et vérifié
+
+1. `dispatch_in_gateway=false` (désactivation répartiteur auto) ✅
+2. Décomposition auto désactivée ✅
+3. Tâches libérées → bloquées une par une (libérer seul ne suffit pas) ✅
+4. Comptage processus workers → **0** ✅
+
+## Validation avant/après
+
+| Métrique | Avant (pendant incident) | Après (correctif) |
+|---|---|---|
+| Gateway port 8642 | Timeout (exit 75) | HTTP 200 /health |
+| Workers fantômes | 3 → 2 → 1 (relancés) | 0 (vérifié) |
+| Charge CPU | Saturée (affamement asyncio) | Normale |
+| Canal notification | Timeout | Fonctionnel |
+| Temps récupération | ~14 min | < 1 min (redémarrage) |
+
+## Dégâts (vérifiés post-incident)
+
+| Élément | État | Preuve |
+|---|---|---|
+| Dépôt git local | INTACT | 133 Ko, 31 objets, 2 commits |
+| Registre de tâches (SQLite) | INTACT | 7 tâches |
+| Service orchestration | Rétabli | Port 8642 listening |
+| Plugin notification | Timeout sous charge | Réseau joignable (302 en 3,1s) |
+
+## Leçon opérationnelle
+
+> **Ne jamais exécuter de travail lourd dans le processus de l'orchestrateur.**
+> Compilations, installations, migrations → terminal normal ou worker distant.
+> L'orchestrateur route et tient le plan — rien de plus.
+
+## Actions préventives
+
+- [x] Répartiteur auto désactivé et vérifié
+- [x] Règle inscrite dans la documentation d'identité (SOUL.md)
+- [x] Leçon ajoutée à la base de connaissances
+- [ ] Supervision : alerter si worker local apparaît alors que répartiteur désactivé
+
+## Note
+Cette preuve est une version expurgée du post-mortem original. Aucune IP, secret ou détail d'infrastructure sensible n'est exposé ici. Les noms de services (gateway, dispatcher, worker) et codes d'erreur sont des détails d'architecture publique.

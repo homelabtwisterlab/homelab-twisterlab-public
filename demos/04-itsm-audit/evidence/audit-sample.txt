@@ -1,0 +1,112 @@
+> **CLEANED COPY — REVIEW BEFORE PUBLISH**
+> Source (private, NOT published): `homelabtwisterlab/homelab-twisterlab/demos/04-itsm-audit/evidence/audit-sample.txt`
+> Redactions: real IPs, internal domains, emails and secret assignments replaced with placeholders. Manual review required before any publication.
+
+# Preuve expurgée — Audit ITSM (2026-10-27)
+
+## Commandes exécutées (lecture seule)
+
+```bash
+ssh edge "kubectl get deploy,svc,ingress,configmap,secret,pvc -n <ns>"
+ssh edge "docker ps -a --filter name=itsm"
+ssh edge "docker volume ls | grep itsm"
+ssh edge "docker network ls | grep itsm"
+ssh edge "docker exec itsm-postgres psql -U itsm -l"
+ssh edge "tar -tzf /home/<USER>/itsm_patch.tar.gz"
+ssh edge "kubectl get applications -n argocd"
+```
+
+## Sortie (expurgée)
+
+### Namespaces K3s ITSM
+
+```
+twisteritsm: 3 deployments (0/0), 4 services, 1 ingress, 2 configmaps, 2 secrets
+twisteritsm-ent: 5 deployments (2 actifs: ent-api, mssql), 6 services, 0 ingress, 4 secrets, 1 PVC
+twisteritsm-ent-v2: 2 deployments (2 actifs: ent-api, ent-web), 2 services, 1 ingress, 10 secrets
+twisteritsm-v2: 2 deployments (0/0), 2 services, 1 ingress, 1 configmap, 2 secrets
+```
+
+### Conteneurs Docker ITSM
+
+```
+itsm-postgres: Up 4 weeks (healthy), port 5433, volume itsm_itsm_pgdata
+itsm-redis: Up 4 weeks, port 6380
+```
+
+### Bases de données
+
+```
+PostgreSQL:
+  itsm: 1 table (migrations)
+  itsm_v2: 13 tables (39 tickets, 10 users, 32 CMDB items)
+SQL Server:
+  TwisterITSM: 25 tables (backup .bak présent, 11.6MB)
+```
+
+### ArgoCD
+
+```
+Applications gérées: mcp-unified, twisterlab-api
+Applications ITSM gérées: AUCUNE
+```
+
+### Webhook ITSM
+
+```
+Service: twisterlab-itsm-webhook (port 8000, namespace twisterlab)
+Selector: app=twisterlab, component=api, ha=true
+Pods correspondants: 0 (service mort)
+```
+
+### Secret Entra ID
+
+```
+Fichier: /home/<USER>/.secrets/entra-twisteritsm-secret (40 bytes, perms 600)
+Référencé dans: /home/<USER>/twisteritsm-rebuild/repo/infra/scripts/enable-entra-oidc.sh
+Référencé dans le code backend: NON
+```
+
+### Backup MSSQL
+
+```
+Fichiers: master.bak (4.3MB), TwisterITSM.bak (11.6MB)
+Date: 2026-08-07
+Restauration testée: NON
+```
+
+### Backup PostgreSQL
+
+```
+Aucun backup PostgreSQL trouvé
+```
+
+## Observations
+
+- 4 namespaces K3s ITSM, dont 2 avec des déploiements actifs
+- 9 déploiements scaled down (0/0) depuis plus de 90 jours
+- 2 conteneurs Docker ITSM (PostgreSQL + Redis)
+- 2 bases PostgreSQL (itsm: vide, itsm_v2: données présentes)
+- 1 base SQL Server (TwisterITSM, 25 tables)
+- 1 secret Entra ID (40 bytes, perms 600)
+- 1 webhook ITSM mort (pas d'endpoints)
+- 1 archive de patch (itsm_patch.tar.gz, 2947 bytes)
+- 1 projet de reconstruction (twisteritsm-rebuild/)
+- 0 backup PostgreSQL
+- 2 backups MSSQL (non testés pour restauration)
+- ArgoCD ne gère aucune ressource ITSM
+
+## Expurgation appliquée
+
+- IPs LAN/Tailscale → non incluses (remplacées par placeholders)
+- Noms de comptes → non inclus
+- Secrets → non inclus (identifiants neutres uniquement)
+- Noms de services et ports → conservés (architecture publique)
+
+## Limites
+
+- Aucune commande destructive exécutée
+- Aucun test de restauration effectué
+- Les dépendances du webhook et du pod SQL Server ne sont pas confirmées
+- L'état du compose file Windows n'a pas été vérifié
+- Le contenu de itsm_patch.tar.gz n'a pas été inspecté (seulement listé)
